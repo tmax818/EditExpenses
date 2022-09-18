@@ -10,46 +10,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-<meta charset="UTF-8">
+    <meta charset="UTF-8">
     <title>Expenses</title>
     <link rel="stylesheet" href="/webjars/bootstrap/css/bootstrap.min.css">
-<link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
+    <link rel="stylesheet" href="/css/main.css"> <!-- change to match your file/naming structure -->
     <script src="/webjars/jquery/jquery.min.js"></script>
     <script src="/webjars/bootstrap/js/bootstrap.min.js"></script>
 </head>
 <body>
-<h1>All Expenses</h1>
-<table>
-    <thead>
-    <tr>
-        <th>ID</th>
-        <th>Name</th>
-        <th>Vendor</th>
-        <th>Amount</th>
-        <th>Actions</th>
-    </tr>
-    </thead>
-    <tbody>
-    <c:forEach var="expense" items="${expenses}">
-        <tr>
-            <td><c:out value="${expense.id}"></c:out></td>
-            <td>
-                <a href="/expenses/${expense.id}">
-                    <c:out value="${expense.name}"></c:out>
-                </a>
-            </td>
-            <td><c:out value="${expense.vendor}"></c:out></td>
-            <td>$<c:out value="${expense.amount}"></c:out></td>
-            <td>
-                <a href="/expenses/edit/${expense.id}">edit</a>
-            </td>
-        </tr>
-    </c:forEach>
-    </tbody>
-</table>
-
-<h1>New Expense</h1>
-<form:form action="/expenses" method="post" modelAttribute="expense">
+<h1>Edit Expense</h1>
+<form:form action="/expenses/${expense.id}" method="post" modelAttribute="expense">
+    <input type="hidden" name="_method" value="put">
     <p>
         <form:label path="name">Name</form:label>
         <form:errors path="name"/>
