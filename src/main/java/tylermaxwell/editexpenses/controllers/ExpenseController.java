@@ -47,6 +47,13 @@ public class ExpenseController {
 
     // READ ONE
 
+    @GetMapping("/expenses/{id}")
+    public String show(@PathVariable("id") Long id, Model model){
+        Expense expense = service.findExpense(id);
+        model.addAttribute("expense", expense);
+        return "/expenses/show.jsp";
+    }
+
     // UPDATE
     @RequestMapping("/expenses/edit/{id}")
     public String edit(@PathVariable("id") Long id, Model model){
